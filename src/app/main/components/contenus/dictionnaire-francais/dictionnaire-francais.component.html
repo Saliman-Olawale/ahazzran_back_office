@@ -1,0 +1,86 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                    </div>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="dictionnaires" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['dictionnaireId','mot','statut']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à  {last} sur {totalRecords} éléments" selectionMode="multiple" [rowHover]="true" dataKey="dictionnaireId">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Dictionnaire Français</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Recherchez..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                        </th>
+                        <th pSortableColumn="code">Id <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name">Mot <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width: 100rem">Image <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width: 100rem">Statut <p-sortIcon field="price"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dict>
+                    <tr>
+                        <td>
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
+                            {{dict.dictionnaireId}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Name</span>
+                            {{dict.mot}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
+                            <img [src]="dict.image" [alt]="dict.mot" width="100" class="shadow-4" />
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Price</span>
+                            {{dict.active ? 'Activé' : 'Désactivé'}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editMot(dict)"></button>
+                                <button pButton pRipple icon="pi {{ dict.active ? 'pi-eye' : 'pi-eye-slash' }}" class="p-button-rounded p-button-warning" (click)="setStatus(dict)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="dictDialog" [style]="{width: '450px'}" header="Mot Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <img [src]="imgURL" [alt]="fileToSend.name" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf=imgURL>
+                <div class="field" *ngIf="!imgURL || dict.dictionnaireId">
+                    <label for="image" pButton (click)="fileInput.click()">
+                        <span>Choisis l'image</span>
+                        <!-- Utilisez l'élément d'entrée de fichier avec le style personnalisé -->
+                        <input #fileInput type="file" style="display: none;" accept="image/*" (change)="onFileSelected($event)">
+                    </label>
+                </div>
+                <div class="field">
+                    <label for="name">Mot</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="dict.mot" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !dict.mot}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !dict.mot">Le mot est requis.</small>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveMot()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

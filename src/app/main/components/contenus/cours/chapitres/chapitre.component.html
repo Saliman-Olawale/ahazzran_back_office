@@ -1,0 +1,88 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                        <!-- <button pButton pRipple label="Désactiver" icon="pi pi-trash" class="p-button-danger" (click)="disableLangues()" [disabled]="!selectedLangues || !selectedLangues.length"></button> -->
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+
+            <p-table #dt [value]="chapitres" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['chapitreId','nomChapitre','statut','codeChapitre']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à  {last} sur {totalRecords} éléments" selectionMode="multiple" [rowHover]="true" dataKey="chapitreId">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Liste des chapitres</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Recherchez..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                        </th>
+                        <th pSortableColumn="code">Id <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="name">Code <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width: 100rem">Titre <p-sortIcon field="nom"></p-sortIcon></th>
+                        <th pSortableColumn="name">Statuts <p-sortIcon field="code"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-chapitre>
+                    <tr>
+                        <td>
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Id</span>
+                            {{chapitre.chapitreId}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Code</span>
+                            {{chapitre.codeChapitre}}
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Titre</span>
+                            {{chapitre.nomChapitre}}
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Statuts</span>
+                            {{chapitre.active ? "Actvivé" : "Désactivé"}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editChapitre(chapitre)"></button> 
+                                <button pButton pRipple icon="pi {{ chapitre.active ? 'pi-eye' : 'pi-eye-slash' }}" class="p-button-rounded p-button-warning mr-2" (click)="setStatus(chapitre)"></button><!--(click)="setStatus(langue)" -->
+                                <button pButton pRipple icon="pi pi-arrow-right" class="p-button-rounded p-button-warning" (click)="goToChapitre(chapitre.chapitreId)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="chapitreDialog" [style]="{width: '450px'}" header="Détails du chapitre" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+
+                <div class="field">
+                    <label for="name">Titre du chapitre</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="chapitre.nomChapitre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !chapitre.nomChapitre}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !chapitre.nomChapitre">Le titre est requis.</small>
+                </div>
+                <!-- <div class="field">
+                    <label for="name">Code du chapitre</label>
+                    <input type="text" pInputText id="code" [(ngModel)]="chapitre.codeChapitre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !chapitre.nomChapitre}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !chapitre.codeChapitre">Le code est requis.</small>
+                </div> -->
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveChapitre()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

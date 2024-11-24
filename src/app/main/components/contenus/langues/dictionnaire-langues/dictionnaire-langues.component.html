@@ -1,0 +1,199 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <button pButton pRipple type="button" label="{{ dictionnaire ? 'Contes' : 'Dictionnaire' }}" class="p-button-success mr-2" (click)="setView()"></button>
+                </ng-template>
+                
+            </p-toolbar>
+
+            <p-table #dt *ngIf="dictionnaire" [value]="currentDictionnaire" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['dictionnaireId','mot','statut']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à  {last} sur {totalRecords} éléments" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Dictionnaire de la langue {{currentLangue.nom}}</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Recherchez..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem"></th>
+                        <th pSortableColumn="code">Id <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name">Mot <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width: 100rem">Audio <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width: 100rem">Statut <p-sortIcon field="price"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dict>
+                    <tr>
+                        <td>
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
+                            {{dict.id}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Name</span>
+                            {{dict.mot}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Audio</span>
+                            <audio controls>
+                                <source [src]="'assets/audio/' + dict.audio" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Price</span>
+                            {{dict.active ? 'Activé' : 'Désactivé'}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editMot(dict)"></button>
+                                <button pButton pRipple icon="pi {{ dict.active ? 'pi-eye' : 'pi-eye-slash' }}" class="p-button-rounded p-button-warning" (click)="setStatus(dict)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <p-table #dt *ngIf="conte" [value]="currentDictionnaire" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['dictionnaireId','mot','statut']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à  {last} sur {totalRecords} éléments" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Contes de la langue {{currentLangue.nom}}</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Recherchez..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem"></th>
+                        <th pSortableColumn="code">Id <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name">Mot <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width: 100rem">Audio <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="price" style="width: 100rem">Statut <p-sortIcon field="price"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dict>
+                    <tr>
+                        <td>
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
+                            {{dict.id}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Name</span>
+                            {{dict.mot}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Audio</span>
+                            <audio controls>
+                                <source [src]="'assets/audio/' + dict.audio" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Price</span>
+                            {{dict.active ? 'Activé' : 'Désactivé'}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editMot(dict)"></button>
+                                <button pButton pRipple icon="pi {{ dict.active ? 'pi-eye' : 'pi-eye-slash' }}" class="p-button-rounded p-button-warning" (click)="setStatus(dict)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog *ngIf="dictionnaire" [(visible)]="dictDialog" [style]="{width: '413px', height: '400px',position: 'absolute'}" header="Mot Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <audio controls class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="dict.audio">
+                    <source [src]="'assets/audio/' + dict.audio" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="field" *ngIf="!dict.audio || dict.dictionnaireId">
+                    <label for="audio" pButton (click)="audioInput.click()">
+                        <span>Choisissez le fichier audio</span>
+                        <input #audioInput type="file" style="display: none;" accept="audio/*" (change)="onAudioSelected($event)">
+                    </label>
+                </div>
+                <div class="field">
+                    <label for="name">Mot</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="dict.mot" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !dict.mot}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !dict.mot">Le mot est requis.</small>
+                </div>
+
+                <p-dropdown id="dict" [options]="dico" style="width: 379px; position: absolute;" optionValue="dictionnaireId" optionLabel="mot" [(ngModel)]="selectedDictionnaireId" (ngModelChange)="onDropdownValueChange()" placeholder="Choisis le mot français">
+                    <ng-template pTemplate="selectedItem">
+                        <span *ngIf="selectedDictionnaire">{{selectedDictionnaire.mot}}</span>
+                    </ng-template>
+                    <ng-template let-dictionnaire pTemplate="status" style="position: relative;">
+                        <span [class]="dictionnaire.id">{{dictionnaire.mot}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </ng-template>
+                
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveMot()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog *ngIf="conte" [(visible)]="dictDialog" [style]="{width: '413px', height: '400px',position: 'absolute'}" header="Mot Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <audio controls class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="dict.audio">
+                    <source [src]="'assets/audio/' + dict.audio" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="field" *ngIf="!dict.audio || dict.dictionnaireId">
+                    <label for="audio" pButton (click)="audioInput.click()">
+                        <span>Choisissez le fichier audio</span>
+                        <input #audioInput type="file" style="display: none;" accept="audio/*" (change)="onAudioSelected($event)">
+                    </label>
+                </div>
+                <div class="field">
+                    <label for="name">Mot</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="dict.mot" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !dict.mot}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !dict.mot">Le mot est requis.</small>
+                </div>
+
+                <!-- <p-dropdown id="dict.id" [options]="dico" style="width: '379px';position: absolute;" optionValue="dictionnaireId" optionLabel="mot" [(ngModel)]="dict.dictionnaireId" placeholder="Choisis le mot français">
+                    <ng-template pTemplate="selectedItem">
+                        <span *ngIf="dict && dict.dictionnaireId">{{dict.mot}}</span>
+                    </ng-template>
+                    <ng-template let-diict pTemplate="status" style="position: relative;">
+                        <span>{{diict.mot}}</span>
+                    </ng-template>
+                </p-dropdown> -->
+
+                <p-dropdown id="dict" [options]="dico" style="width: 379px; position: absolute;" optionValue="dictionnaireId" optionLabel="mot" [(ngModel)]="selectedDictionnaireId" (ngModelChange)="onDropdownValueChange()" placeholder="Choisis le mot français">
+                    <ng-template pTemplate="selectedItem">
+                        <span *ngIf="selectedDictionnaire">{{selectedDictionnaire.mot}}</span>
+                    </ng-template>
+                    <ng-template let-dictionnaire pTemplate="status" style="position: relative;">
+                        <span [class]="dictionnaire.id">{{dictionnaire.mot}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </ng-template>
+                
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveMot()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>
