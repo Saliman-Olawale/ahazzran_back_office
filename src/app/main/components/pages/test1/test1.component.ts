@@ -3,7 +3,10 @@ import { Product } from 'src/app/main/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/main/service/product.service';
+<<<<<<< HEAD
 import { ActivatedRoute, Router } from '@angular/router';
+=======
+>>>>>>> origin/jessica
 
 @Component({
     templateUrl: './test1.component.html',
@@ -31,7 +34,11 @@ export class Test1Component implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
+<<<<<<< HEAD
     constructor(private productService: ProductService, private messageService: MessageService, private router: Router, private route: ActivatedRoute) { }
+=======
+    constructor(private productService: ProductService, private messageService: MessageService) { }
+>>>>>>> origin/jessica
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
@@ -51,11 +58,14 @@ export class Test1Component implements OnInit {
         ];
     }
 
+<<<<<<< HEAD
     goToDetails(productId: number) {
         // this.router.navigate(['test2', productId])
         this.router.navigate(['test2', productId], { relativeTo: this.route });
     }
 
+=======
+>>>>>>> origin/jessica
     openNew() {
         this.product = {};
         this.submitted = false;

@@ -8,11 +8,7 @@
             <div class="h-full w-full m-0 py-7 px-4"
                 style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
                 <div class="text-center mb-5">
-<<<<<<< HEAD
                     <img src="assets/demo/images/login/avatar.png" alt="Image" height="50" class="mb-3"> 
-=======
-                    <!-- <img src="assets/demo/images/login/avatar.png" alt="Image" height="50" class="mb-3">  -->
->>>>>>> origin/jessica
                     <div class="text-900 text-3xl font-medium mb-3">CONNEXION</div>
 
                 </div>
@@ -20,13 +16,13 @@
                 <div class="w-full md:w-10 mx-auto">
                     <!-- <p-template pTemplate="content"> -->
                         <div class="field">
-                            <label for="name">Code de validation</label>
-                            <input type="email" style="width: '100%';" pInputText id="name" [(ngModel)]="code" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !code}"/>
-                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !code">Le code est requis.</small>
+                            <label for="name">Email</label>
+                            <input type="email" style="width: '100%';" pInputText id="name" [(ngModel)]="input.email" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !email}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !email">L'email est requis.</small>
                         </div>
                     <!-- </p-template> -->
                         
-                    <button pButton pRipple label="Se connecter" class="w-full p-3 text-xl" (click)="login()"></button>
+                    <button pButton pRipple label="Continuer" class="w-full p-3 text-xl" (click)="continue()"></button>
                 </div>
             </div>
         </div>

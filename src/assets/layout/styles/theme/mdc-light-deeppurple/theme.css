@@ -7,8 +7,13 @@
   --surface-f:#ffffff;
   --text-color:rgba(0, 0, 0, 0.87);
   --text-color-secondary:rgba(0, 0, 0, 0.6);
+<<<<<<< HEAD
   --primary-color:#673AB7;
   --primary-color-text:#ffffff;
+=======
+  --primary-color:#b14205;
+  --primary-color-text:#b14205
+>>>>>>> origin/jessica
   --font-family:Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   --surface-0: #ffffff;
   --surface-50: #FAFAFA;
@@ -1874,8 +1879,13 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 }
 
 .p-button {
+<<<<<<< HEAD
   color: #ffffff;
   background: #673AB7;
+=======
+  /* color: #ee6417; */
+  background: #b14205;
+>>>>>>> origin/jessica
   border: 0 none;
   padding: 0.643rem 0.75rem;
   font-size: 1rem;
@@ -1883,7 +1893,11 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   border-radius: 4px;
 }
 .p-button:enabled:hover {
+<<<<<<< HEAD
   background: rgba(103, 58, 183, 0.92);
+=======
+  background: rgba(126, 34, 12, 0.92);
+>>>>>>> origin/jessica
   color: #ffffff;
   border-color: transparent;
 }
@@ -2171,7 +2185,11 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-button.p-button-warning, .p-buttonset.p-button-warning > .p-button, .p-splitbutton.p-button-warning > .p-button {
   color: #fff;
+<<<<<<< HEAD
   background: #ED7B30;
+=======
+  background: #6B2719;
+>>>>>>> origin/jessica
   border: 0 none;
 }
 .p-button.p-button-warning:enabled:hover, .p-buttonset.p-button-warning > .p-button:enabled:hover, .p-splitbutton.p-button-warning > .p-button:enabled:hover {

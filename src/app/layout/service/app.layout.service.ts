@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+<<<<<<< HEAD
+=======
+import { ConnexionInputDto } from 'src/app/shared/service-proxies/service-proxies';
+>>>>>>> origin/jessica
 
 export interface AppConfig {
     inputStyle: string;
@@ -23,6 +27,12 @@ interface LayoutState {
     providedIn: 'root',
 })
 export class LayoutService {
+<<<<<<< HEAD
+=======
+    backoffice(data: ConnexionInputDto) {
+        throw new Error('Method not implemented.');
+    }
+>>>>>>> origin/jessica
 
     config: AppConfig = {
         ripple: false,

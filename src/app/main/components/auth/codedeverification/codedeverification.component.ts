@@ -60,8 +60,16 @@ export class CodedeverificationComponent {
 
         const dataToSend = new ConnexionBackOfficeInputDto(this.data)
 
+<<<<<<< HEAD
         this.backofficeService.connexion(dataToSend).subscribe(
             res => {
+=======
+        this.backofficeService.connexion(dataToSend).subscribe( 
+            res => {
+                console.log(res)
+                this.loading = false;
+
+>>>>>>> origin/jessica
                 if(res.status === 'Succes'){
                     console.log("oksqghcxfg") 
                     localStorage.setItem('token', res.token);
@@ -74,6 +82,9 @@ export class CodedeverificationComponent {
             err => { console.log(err) }
         )
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/jessica
 }
 

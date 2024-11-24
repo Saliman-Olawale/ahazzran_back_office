@@ -19,7 +19,7 @@
             <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à  {last} sur {totalRecords} éléments" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">TEST 1</h5>
+                        <h5 class="m-0">Dictionnaire</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Recherchez..."  class="w-full sm:w-auto"/>
@@ -42,12 +42,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
-                    <!-- [routerLink]="['/test2', product.name]" -->
-<<<<<<< HEAD
-                    <tr (click)="goToDetails(product.id)">
-=======
-                    <tr [routerLink]="['/test2', product.id]">
->>>>>>> origin/jessica
+                    <tr>
                         <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
                         </td>

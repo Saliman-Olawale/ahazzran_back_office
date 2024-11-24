@@ -6,6 +6,7 @@
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+<<<<<<< HEAD
                         <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
@@ -23,11 +24,25 @@
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Recherchez..."  class="w-full sm:w-auto"/>
+=======
+                    </div>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="utilisateurs" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rowsPerPageOptions]="[10,20,30]" [paginator]="true" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à {last} sur {totalRecords} éléments" [(selection)]="selectedUtilisateur" selectionMode="multiple" [rowHover]="true" dataKey="utilisateurId">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Gestion des utilisateurs</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Recherchez..." class="w-full sm:w-auto"/>
+>>>>>>> origin/jessica
                         </span>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
+<<<<<<< HEAD
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
@@ -74,6 +89,29 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+=======
+                        <th style="width: 3rem"></th>
+                        <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                        <th pSortableColumn="roleName">Role <p-sortIcon field="roleName"></p-sortIcon></th>
+                        <th pSortableColumn="active">Statuts <p-sortIcon field="active"></p-sortIcon></th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-utilisateur>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="utilisateur"></p-tableCheckbox>
+                        </td>
+                        <td style="width:14%; min-width:10rem;">{{utilisateur.utilisateurId}}</td>
+                        <td style="width:14%; min-width:10rem;">{{utilisateur.email}}</td>
+                        <td style="width:14%; min-width:10rem;">{{utilisateur.roleName}}</td>
+                        <td style="width:14%; min-width:10rem;">{{ utilisateur.active ? 'Actif' : 'Inactif' }}</td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editUtilisateur(utilisateur)"></button>
+                                <button pButton pRipple [icon]="utilisateur.active ? 'pi pi-eye' : 'pi pi-eye-slash'" [class]="utilisateur.active ? 'p-button-rounded p-button-success' : 'p-button-rounded p-button-warning'" (click)="setStatus(utilisateur)"></button>
+>>>>>>> origin/jessica
                             </div>
                         </td>
                     </tr>
@@ -81,6 +119,7 @@
             </p-table>
         </div>
 
+<<<<<<< HEAD
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
                 <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image">
@@ -179,3 +218,35 @@
         </p-dialog>
     </div>
 </div>
+=======
+        <p-dialog [(visible)]="utilisateurDialog" [style]="{width: '450px'}" header="Détails de l'utilisateur" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="email">Email de l'utilisateur</label>
+                    <input type="text" pInputText id="email" [(ngModel)]="utilisateur.email" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && !utilisateur.email}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !utilisateur.email">L'email est requis.</small>
+                </div>
+                <div class="field">
+                    <label for="name">Role de l'utilisateur</label>
+                    <p-dropdown id="role" [options]="roles" optionLabel="roleName" [(ngModel)]="selectedUtilisateur.roleName"
+                                placeholder="Choisissez un rôle" [filter]="true" appendTo="body" dataKey="roleId">
+                                <ng-template pItemTemplate let-role>
+                                    <span>{{role.roleName}}</span>
+                                </ng-template>
+                                <ng-template let-role pTemplate="selectedItem">
+                                    <span *ngIf="utilisateur && utilisateur.roleName" [class]="'product-badge status-' + utilisateur.roleName.toLowerCase()">{{utilisateur.roleName}}</span>
+                                </ng-template>
+                                <ng-template let-role pTemplate="role">
+                                    <span> {{role.designation}}</span>
+                                </ng-template>
+                    </p-dropdown>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <button pButton type="button" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton type="button" label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveUtilisateur()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>       
+>>>>>>> origin/jessica

@@ -12,7 +12,11 @@
 
             </p-toolbar>
 
+<<<<<<< HEAD
             <p-table #dt [value]="langues" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['langueId','nom','statut','codeLangue']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à  {last} sur {totalRecords} éléments" selectionMode="multiple" [rowHover]="true" dataKey="langueId">
+=======
+            <p-table #dt [value]="langues" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Afficher de {first} à  {last} sur {totalRecords} éléments" [(selection)]="selectedLangues" selectionMode="multiple" [rowHover]="true" dataKey="langueId">
+>>>>>>> origin/jessica
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Gestion des langues</h5>
@@ -25,6 +29,10 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="width: 3rem">
+<<<<<<< HEAD
+=======
+                            <!-- <p-tableHeaderCheckbox></p-tableHeaderCheckbox> -->
+>>>>>>> origin/jessica
                         </th>
                         <th pSortableColumn="code">Id <p-sortIcon field="id"></p-sortIcon></th>
                         <th pSortableColumn="name">Code <p-sortIcon field="code"></p-sortIcon></th>
@@ -36,6 +44,10 @@
                 <ng-template pTemplate="body" let-langue>
                     <tr>
                         <td>
+<<<<<<< HEAD
+=======
+                            <!-- <p-tableCheckbox [value]="langue"></p-tableCheckbox> -->
+>>>>>>> origin/jessica
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Id</span>
                             {{langue.langueId}}
@@ -50,13 +62,20 @@
                         </td>
                         <td style="width:14%; min-width:8rem;">
                             <span class="p-column-title">Statuts</span>
+<<<<<<< HEAD
                             {{langue.active ? "Actvivé" : "Désactivé"}}
+=======
+>>>>>>> origin/jessica
                         </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editLangue(langue)"></button>
+<<<<<<< HEAD
                                 <button pButton pRipple icon="pi {{ langue.active ? 'pi-eye' : 'pi-eye-slash' }}" class="p-button-rounded p-button-warning mr-2" (click)="setStatus(langue)"></button>
                                 <button pButton pRipple icon="pi pi-arrow-right" class="p-button-rounded p-button-warning" (click)="goToDicoLangue(langue.langueId)"></button>
+=======
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+>>>>>>> origin/jessica
                             </div>
                         </td>
                     </tr>
@@ -72,6 +91,7 @@
                     <input type="text" pInputText id="name" [(ngModel)]="langue.nom" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !langue.nom}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !langue.nom">Le nom est requis.</small>
                 </div>
+<<<<<<< HEAD
                 <!-- <div class="field">
                     <label for="name">Code de la langue</label>
                     <input type="text" pInputText id="code" [(ngModel)]="langue.codeLangue" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !langue.codeLangue}"/>
@@ -83,6 +103,19 @@
                 <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
                 <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveLangue()"></button>
             </ng-template>
+=======
+                <div class="field">
+                    <label for="name">Code de la langue</label>
+                    <input type="text" pInputText id="code" [(ngModel)]="langue.codeLangue" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !langue.codeLangue}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !langue.codeLangue">Le code est requis.</small>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                
+            </ng-template><button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveLangue()"></button>
+>>>>>>> origin/jessica
         </p-dialog>
     </div>
 </div>

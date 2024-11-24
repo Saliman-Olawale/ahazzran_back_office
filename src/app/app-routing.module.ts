@@ -7,10 +7,18 @@ import { MydashboardComponent } from './main/components/mydashboard/mydashboard.
 @NgModule({
     imports: [
         RouterModule.forRoot([
+<<<<<<< HEAD
             { path: '', loadChildren: () => import('./main/components/auth/connexion/connexion.module').then(m => m.ConnexionModule) },
             {
                 path: 'appLayout', component: AppLayoutComponent,
                 children: [
+=======
+            { path: '', loadChildren: () => import('./main/components/connexion/connexion.module').then(m => m.ConnexionModule)},
+            {
+                path: 'appLayout', component: AppLayoutComponent,
+                children: [
+                    // { path: '', loadChildren: () => import('./main/components/connexion/connexion.module').then(m => m.ConnexionModule) },
+>>>>>>> origin/jessica
                     { path: 'dashboard', loadChildren: () => import('./main/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./main/components/uikit/uikit.module').then(m => m.UikitModule) },
                     { path: 'utilities', loadChildren: () => import('./main/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
@@ -24,7 +32,11 @@ import { MydashboardComponent } from './main/components/mydashboard/mydashboard.
                     { path: 'mydashboard', component: MydashboardComponent },
                 ],
             },
+<<<<<<< HEAD
             { path: 'auth', loadChildren: () => import('./main/components/auth/auth.module').then(m => m.AuthModule) },
+=======
+            { path: 'auth', loadChildren: () => import('./main/components/auth/auth.module').then(m => m.AuthModule)},
+>>>>>>> origin/jessica
             { path: 'landing', loadChildren: () => import('./main/components/landing/landing.module').then(m => m.LandingModule) },
             { path: 'pages/notfound', component: NotfoundComponent },
             { path: '**', redirectTo: 'pages/notfound' },
@@ -32,5 +44,9 @@ import { MydashboardComponent } from './main/components/mydashboard/mydashboard.
     ],
     exports: [RouterModule]
 })
+<<<<<<< HEAD
 export class AppRoutingModule {
 }
+=======
+export class AppRoutingModule {}
+>>>>>>> origin/jessica

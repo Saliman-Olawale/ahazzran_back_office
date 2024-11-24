@@ -108,7 +108,11 @@
             }
         }
     },
+<<<<<<< HEAD
     "defaultProject": "sakai",
+=======
+    "defaultProject": "Ahazzran",
+>>>>>>> origin/jessica
     "cli": {
       "analytics": false
     }

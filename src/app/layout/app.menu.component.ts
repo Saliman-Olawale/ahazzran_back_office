@@ -17,11 +17,16 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items: [
+<<<<<<< HEAD
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['dashboard'] }
+=======
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['appLayout/dashboard'] }
+>>>>>>> origin/jessica
                 ]
             },
             {
                 label: 'Contenus',
+<<<<<<< HEAD
                 routerLink: ['contenus'],
                 items: [
                     { 
@@ -48,10 +53,43 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Langues', icon: 'pi pi-fw pi-book', routerLink: ['contenus/langue'] },
                     { label: 'Dictionnaire', icon: 'pi pi-fw pi-book', routerLink: ['contenus/dictionnaireFrancais'] },
                     // { label: 'Apprentissage', icon: 'pi pi-fw pi-home', routerLink: ['contenus/apprentissage'] }
+=======
+                routerLink: ['appLayout/contenus'],
+                items: [
+                    { 
+                        label: 'Cours', 
+                        icon: 'pi pi-fw pi-home',
+                        items: [
+                            {
+                                label: 'Chapitres',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/appLayout/contenus/cours/chapitre']
+                            },
+                            {
+                                label: 'Leçons',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/appLayout/contenus/cours/leçon']
+                            },
+                            {
+                                label: 'Niveaux',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/appLayout/contenus/cours/niveau']
+                            },
+                            {
+                                label: 'Abrobations',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/cours/abrobation']
+                            },
+                        ] 
+                    },
+                    { label: 'Langues', icon: 'pi pi-fw pi-home', routerLink: ['/appLayout/contenus/langue'] },
+                    { label: 'Dictionnaire', icon: 'pi pi-fw pi-home', routerLink: ['/appLayout/contenus/dictionnaire'] }
+>>>>>>> origin/jessica
                 ]
             },
             {
                 label: 'Sécurité',
+<<<<<<< HEAD
                 routerLink: ['securite'],
                 items: [
                     { label: 'Utilisateurs', icon: 'pi pi-fw pi-user', routerLink: ['securite/utilisateur'] },
@@ -229,5 +267,48 @@ export class AppMenuComponent implements OnInit {
                 ]
             }*/
         ];
+=======
+                routerLink: ['appLayout/securite'],
+                items: [
+                    { label: 'Utilisateurs', icon: 'pi pi-fw pi-home', routerLink: ['/appLayout/securite/utilisateur'] },
+                    { label: 'Rôles', icon: 'pi pi-fw pi-home', routerLink: ['/appLayout/securite/role'] },
+                    {
+                        label: 'Auth',
+                        icon: 'pi pi-fw pi-user',
+                        routerLink: ['/auth'],
+                        items: [
+        
+                            {
+                                label: 'Connexion',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/']
+                            },
+                            {
+                                label: 'Code de verification',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/auth/codedeverification']
+                            },
+                            {
+                                label: 'Nouveau mot de passe',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/auth/nouveaumotdepasse']
+                            },
+                            
+                            // {
+                            //     label: 'Error',
+                            //     icon: 'pi pi-fw pi-times-circle',
+                            //     routerLink: ['/auth/error']s
+                            // },
+                            // {
+                            //     label: 'Access Denied',
+                            //     icon: 'pi pi-fw pi-lock',
+                            //     routerLink: ['/auth/access']
+                            // }
+                        ]
+                    },
+                ]
+            },
+        ]
+>>>>>>> origin/jessica
     }
 }

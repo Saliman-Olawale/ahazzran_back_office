@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RoleRoutingModule } from './role-routing.module';
-import { RoleComponent } from './role.component';
+import { LeçonRoutingModule } from './leçon-routing.module';
+import { LeçonComponent } from './leçon.component';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
@@ -16,15 +16,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
-<<<<<<< HEAD
 
-=======
-import { ServiceProxyModule} from 'src/app/shared/service-proxies/service-proxies.module';
->>>>>>> origin/jessica
 @NgModule({
     imports: [
         CommonModule,
-        RoleRoutingModule,
+        LeçonRoutingModule,
         TableModule,
         FileUploadModule,
         FormsModule,
@@ -38,16 +34,8 @@ import { ServiceProxyModule} from 'src/app/shared/service-proxies/service-proxie
         DropdownModule,
         RadioButtonModule,
         InputNumberModule,
-<<<<<<< HEAD
         DialogModule
     ],
-    declarations: [RoleComponent]
-=======
-        DialogModule,
-        ServiceProxyModule,
-        
-    ],
-    declarations: [RoleComponent],
->>>>>>> origin/jessica
+    declarations: [LeçonComponent]
 })
-export class RoleModule { }
+export class LeçonModule { }

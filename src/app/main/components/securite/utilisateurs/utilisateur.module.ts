@@ -16,6 +16,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+<<<<<<< HEAD
+=======
+import { ServiceProxyModule } from 'src/app/shared/service-proxies/service-proxies.module';
+>>>>>>> origin/jessica
 
 @NgModule({
     imports: [
@@ -34,7 +38,12 @@ import { DialogModule } from 'primeng/dialog';
         DropdownModule,
         RadioButtonModule,
         InputNumberModule,
+<<<<<<< HEAD
         DialogModule
+=======
+        DialogModule,
+        ServiceProxyModule
+>>>>>>> origin/jessica
     ],
     declarations: [UtilisateurComponent]
 })

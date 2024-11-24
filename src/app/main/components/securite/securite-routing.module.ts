@@ -5,6 +5,10 @@ import { RouterModule } from '@angular/router';
     imports: [RouterModule.forChild([
         { path: 'utilisateur', loadChildren: () => import('./utilisateurs/utilisateur.module').then(m => m.UtilisateurModule) },
         { path: 'role', loadChildren: () => import('./roles/role.module').then(m => m.RoleModule) },
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/jessica
     ])],
     exports: [RouterModule]
 })
